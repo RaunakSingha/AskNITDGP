@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+    <title>{% block title %}AskNITDGP{% endblock %}</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+    body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
+    </style>
+    <body class="w3-light-grey">
+        <nav class="navbar navbar-inverse">
+        <div  class="container-fluid">
+            <!-- HEADER-->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#topNavBar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="{% url 'home' %}">AskNITDGP</a>
+            </div>
+
+            <!-- Navigation BAR ITEMS -->
+            <div class="collapse navbar-collapse" id="topNavBar">
+                <form class="navbar-form navbar-left" role="search" method="GET" action="{% url 'home' %}">
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="q" value="" placeholder="Search">
+                        <button type="submit" class="btn btn-default">Search</button>
+                    </div>
+
+                </form>
+
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="">
+                        <a href="{% url 'post-add' %}">
+                            <span class="glyphicon glyphicon-plus"></span>Add Question
+                        </a>
+                    </li>
+                    <li class="">
+                        <a href="#">
+                            <span class="glyphicon glyphicon-question-sign"></span>About
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    {% block body %}
+
+    {% endblock %}
+    </body>
+</html>

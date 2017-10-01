@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from .models import Post, Comment
+from .models import Post
 from . forms import CommentForm
 from django.views.generic.edit import CreateView
 
@@ -22,7 +22,7 @@ def post_detail(request, post_id):
             new_comment.save()
     else:
         comment_form = CommentForm()
-    return render(request, 'blog/detail.html', {'post': post, 'comments': comments, 'comment_form': comment_form})
+    return render(request, 'blog/detail.html', {'post': post, 'comments': comments, 'comment_form': comment_form, })
 
 
 class PostCreate(CreateView):

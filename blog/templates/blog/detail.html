@@ -14,18 +14,14 @@
 
         <div class="w3-card-4 w3-margin w3-white">
             <div class="w3-container">
-                {% with post.comment_set.count as total_comments %}
-                    <h2>
-                    {{ total_comments }} comment{{ total_comments|pluralize }}
-                    </h2>
-                {% endwith %}
+                <h2>{{ post.comment_set.count }} comment{{ post.comment_set.count|pluralize }}</h2>
                 {% for comment in comments %}
                     <div class="comment">
-                        <p class="info">
+                        <p class="info" >
                         Comment {{ forloop.counter }} by {{ comment.author }}
-                        {{ comment.publish }}
+                        {{ comment.publish }}<br>
+                        {{ comment.body }}
                         </p>
-                        {{ comment.body|linebreaks }}
                     </div>
                     {% empty %}
                     <p>There are no comments yet.</p>
@@ -33,12 +29,24 @@
               {% if new_comment %}
                 <h2>Your comment has been added.</h2>
               {% else %}
-                <h2>Add a new comment</h2>
-                <form action="." method="post">
-                {{ comment_form.as_p }}
+                  <h2>Add a new comment</h2>
+                  <form class="form-horizontal" action="." method="post" enctype="multipart/form-data">
                     {% csrf_token %}
-                <p><input type="submit" value="Add comment"></p>
-                </form>
+                    {% for field in comment_form %}
+                        <div class="form-group">
+                            <div class="col-sm-offset-1 col-sm-11">
+                                <span class="text-danger small">{{ field.errors }}</span>
+                            </div>
+                            <label class="control-label col-sm-1">{{ field.label_tag }}</label>
+                            <div class="col-sm-11">{{ field }}</div>
+                        </div>
+                    {% endfor %}
+                      <div class="form-group">
+                          <div class="col-sm-offset-1 col-sm-11">
+                              <button type="submit" class="btn btn-success">Add Comment</button>
+                          </div>
+                      </div>
+                  </form>
               {% endif %}
             </div>
         </div>

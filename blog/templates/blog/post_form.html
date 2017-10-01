@@ -3,13 +3,11 @@
 
 {% block body %}
 <div class="container-fluid">
-
     <div class="row">
-
         <div class="col-sm-12 col-md-7">
-
             <div class="panel panel-default">
                 <div class="panel-body">
+                <strong>Ask a question:</strong><br><br><br>
                     <form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
                     {% csrf_token %}
                     {% for field in form %}
